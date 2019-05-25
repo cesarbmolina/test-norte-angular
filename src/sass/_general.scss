@@ -72,10 +72,15 @@ a {
     font-weight: 600;
     margin: 0 20px;
     padding: 10px 20px;
+    cursor: pointer;
 
     @media (min-width: $break-medium) {
       display: inline-block;
       padding: 10px 0;
+    }
+
+    &:hover {
+      color: darken(map-get($colors, blue), 20%);
     }
   }
 
@@ -84,6 +89,30 @@ a {
 
     a {
       color: map-get($colors, blue );
+    }
+  }
+
+  &-aside {
+    max-width: 102px;
+  }
+
+  &-menu {
+
+    &--item {
+      cursor: pointer;
+      display: block;
+      padding: 20px;
+      text-align: center;
+      transition: .2s;
+      width: 100%;
+
+      &:hover {
+        background: map-get($colors, blue2);
+      }
+
+      &.active {
+        background: map-get($colors, blue2);
+      }
     }
   }
 }
@@ -133,6 +162,15 @@ a {
   }
 }
 
+.g-input {
+  background: map-get($colors, white );
+  border: 0;
+  color: map-get($colors, black );
+  font-size: 14px;
+  padding: 8px 20px;
+  height: 36px;
+}
+
 // colors
 .g-c {
   &--gray {
@@ -175,4 +213,17 @@ a {
 
 .g-uppercase {
   text-transform: uppercase;
+}
+.g-hr {
+  border: 1px solid map-get($colors, gray);
+
+  &-big {
+    border: 2px solid map-get($colors, gray3);
+  }
+}
+
+.g-line {
+  &--1 {
+    line-height: 1;
+  }
 }

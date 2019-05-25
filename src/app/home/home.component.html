@@ -4,8 +4,8 @@
       <div class="g-container mx-auto">
         <nav class="text-right w-100 mt-5 g-menu">
           <ul class="g-nav">
-            <li class="g-nav--item"><a href="#c1">Content 1</a></li>
-            <li class="g-nav--item"><a href="#c2">Content 2</a></li>
+            <li class="g-nav--item"><a SimpleSmoothScroll [scrollTo]="'cone'" [easing]="linear">Content 1</a></li>
+            <li class="g-nav--item"><a SimpleSmoothScroll [scrollTo]="'ctwo'" [easing]="linear">Content 2</a></li>
             <li class="g-nav--item active" [routerLink]="['/dashboard'] " mat-button>Login</li>
           </ul>
         </nav>
@@ -27,7 +27,7 @@
       </div>
 
     </section>
-    <section class=" w-100" id="c2">
+    <section class=" w-100" id="cone">
       <div class="g-container mx-auto">
         <div class=" ">
           <div class="mt-5 mx-5">
@@ -76,7 +76,7 @@
 
     </section>
 
-    <section class=" w-100 g-bg-c--gray2 g-bg-cloud" id="c2">
+    <section class=" w-100 g-bg-c--gray2 g-bg-cloud" id="ctwo">
       <div class="g-container mx-auto">
         <div class=" ">
           <div class="mt-5 pt-5 mx-5 text-right">
