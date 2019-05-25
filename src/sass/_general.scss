@@ -1,0 +1,178 @@
+:focus {outline:none !important;}
+
+a {
+  color: map-get($colors, black );
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.g-section {
+  height: 100vh;
+}
+
+.g-bg {
+  &--home1 {
+    background: url(./../assets/img/bg-home1.svg)  no-repeat;
+    background-size: auto 100%;
+    background-position: bottom center;
+
+    @media (min-width: $break-medium) {
+      background-position: bottom right;
+    }
+
+    &::after {
+      content: '';
+      background: rgba(255,255,255, .8);
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 0;
+
+      @media (min-width: $break-medium) {
+        display: none;
+      }
+    }
+  }
+
+  &-cloud {
+    background: url(./../assets/img/cloud.svg) 20% 20%  no-repeat;
+  }
+}
+
+.g-container {
+  max-width: 1140px;
+
+  @media (min-width: $break-xlarge) {
+    max-width: $break-xlarge;
+
+  }
+}
+
+
+.g-menu {
+  position: fixed;
+  z-index: 10;
+
+  @media (min-width: $break-medium) {
+    position: relative;
+  }
+}
+
+.g-nav {
+  margin: 0;  
+  padding: 0;
+  text-decoration: none;
+
+  &--item {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 20px;
+    padding: 10px 20px;
+
+    @media (min-width: $break-medium) {
+      display: inline-block;
+      padding: 10px 0;
+    }
+  }
+
+  .active {
+    color: map-get($colors, blue );
+
+    a {
+      color: map-get($colors, blue );
+    }
+  }
+}
+
+.g-f {
+
+  &--thin {
+    font-weight: 300;
+  }
+
+  &--semibold {
+    font-weight: 600;
+  }
+
+  &--bold {
+    font-weight: 700;
+  }
+
+  &--xbold {
+    font-weight: 900;
+  }
+}
+
+.g-vh {
+  &--100 {
+    height: 100vh;
+  }
+
+  &-content--100{
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: $break-medium) {
+      height: calc(100vh - 72px);
+    }
+  }
+}
+
+.g-price {
+  max-width: 300px;
+  border: 5px solid map-get($colors, white);
+  padding: 20px 40px;
+
+  &--important {
+    border: 5px solid map-get($colors, blue);
+  }
+}
+
+// colors
+.g-c {
+  &--gray {
+    color: map-get($colors, gray );
+  }
+
+  &--white {
+    color: map-get($colors, white );
+  }
+
+  &--blue {
+    color: map-get($colors, blue );
+  }
+}
+
+//bg color
+
+.g-bg-c {
+  &--gray {
+    background-color: map-get($colors, gray );
+  }
+
+  &--gray2 {
+    background-color: map-get($colors, gray2 );
+  }
+
+  &--white {
+    background-color: map-get($colors, white );
+  }
+
+  &--blue {
+    background-color: map-get($colors, blue );
+  }
+}
+
+//hack
+.g-block {
+  display: block;
+}
+
+.g-uppercase {
+  text-transform: uppercase;
+}

@@ -1,0 +1,69 @@
+
+$font-start: 9;
+$font-end: 75;
+
+@for $i from $font-start through $font-end {
+  $number: 1 * $i;
+  .g-f--#{$i} {font-size: $number + px}
+}
+
+@media (min-width: $break-small) {
+  @for $i from $font-start through $font-end {
+    $number: 1 * $i;
+    .g-f-sm--#{$i} {font-size: $number + px}
+  }
+}
+
+@media (min-width: $break-medium) {
+  @for $i from $font-start through $font-end {
+    $number: 1 * $i;
+    .g-f-md--#{$i} {font-size: $number + px}
+  }
+}
+
+@media (min-width: $break-large) {
+  @for $i from $font-start through $font-end {
+    $number: 1 * $i;
+    .g-f-lg--#{$i} {font-size: $number + px}
+  }
+}
+
+@media (min-width: $break-xlarge) {
+  @for $i from $font-start through $font-end {
+    $number: 1 * $i;
+    .g-f-xl--#{$i} {font-size: $number + px}
+  }
+}
+
+
+$w-start: 0;
+$w-end: 100;
+
+@for $i from $w-start through $w-end {
+  $number: 1 * $i;
+  .w-px--#{$i} {width: $number * 10 + px }
+}
+
+@media (min-width: $break-medium) {
+  @for $i from $w-start through $w-end {
+    $number: 1 * $i;
+    .w-px-md--#{$i} {
+      width: $number * 10 + px ;
+      max-width: $number * 10 + px ;
+    }
+  }
+}
+
+@media (min-width: $break-large) {
+  @for $i from $w-start through $w-end {
+    $number: 1 * $i;
+    .w-px-lg--#{$i} {width: $number * 10 + px }
+  }
+}
+
+@media (min-width: $break-xlarge) {
+  @for $i from $w-start through $w-end {
+    $number: 1 * $i;
+    .w-px-xlg--#{$i} {width: $number * 10 + px }
+  }
+}
