@@ -101,10 +101,14 @@ a {
     &--item {
       cursor: pointer;
       display: block;
-      padding: 20px;
+      padding: 10px;
       text-align: center;
       transition: .2s;
       width: 100%;
+
+      @media (min-width: $break-medium) {
+        padding: 20px;
+      }
 
       &:hover {
         background: map-get($colors, blue2);
@@ -138,16 +142,16 @@ a {
 
 .g-vh {
   &--100 {
-    height: 100vh;
+    min-height: 100vh;
   }
 
   &-content--100{
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     z-index: 1;
 
     @media (min-width: $break-medium) {
-      height: calc(100vh - 72px);
+      min-height: calc(100vh - 72px);
     }
   }
 }
@@ -226,4 +230,53 @@ a {
   &--1 {
     line-height: 1;
   }
+}
+
+// hack for material
+.mat-form-field-underline {
+  display: none ;
+}
+
+.mat-form-field-infix {
+  border-top: 0 solid transparent;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 0;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: map-get($colors, black );
+  padding-left: 25px;
+}
+
+.mat-form-field-label-wrapper {
+  top: -1.2em;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  top: 1.5em;
+}
+
+.mat-empty .mat-form-field-empty {
+  opacity: 1;
+}
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #555;
 }

@@ -1,5 +1,6 @@
 <div class="container-fluid g-bg-c--gray2 ">
   <div class="row g-vh--100 ">
+
     <div class="d-flex w-100">
       <aside class="g-vh--100 w-100 g-nav-aside g-bg-c--blue">
         <ul class="g-nav-menu mt-5">
@@ -20,28 +21,34 @@
           </li>
         </ul>
       </aside>
-      <section class="w-100 mt-5">
+
+      <section class="w-100 mt-5 mb-5">
         <div class="container mx-auto">
           <div class="d-flex align-items-center">
             <div class="pr-3">
               <img src="../../assets/img/woman.svg" alt="">
             </div>
             <div class="w-100">
-              <h3 class="g-f--50 g-f--xbold g-c--black">New Sale</h3>
+              <h3 class="g-f--30 g-f-md--50 g-f--xbold g-c--black">New Sale</h3>
               <hr class="g-hr-big w-100 g-line--1">
             </div>
           </div>
 
-          <div class="ml-3 mt-4">
+          <div class="ml-md-3 mt-4">
             <h2 class="g-c--black g-f--30 g-f--bold">Document</h2>
             <hr>
 
-            <div class="d-flex">
-              <div class="flex-fill mr-md-4">
+            <div class="d-flex flex-column flex-md-row">
+              <div class="flex-fill mr-md-4 mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Client</h4>
-                <div class="d-flex ">
-                  <input type="text" class="g-input w-100">
-                  <button mat-button class="g-btn g-btn--blue ml-2">
+                <div class="d-flex">
+                  <mat-form-field class="w-100 ">
+                    <mat-select class="g-input">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <button mat-button class="g-btn g-btn--blue ml-2 ">
                     <i class="material-icons">
                       add
                     </i>
@@ -49,34 +56,42 @@
                 </div>
 
               </div>
-              <div class="flex-fill mr-md-4">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Branch oﬃce</h4>
-                <input type="text" class="g-input w-100">
+              <div class="flex-fill mr-md-4 mb-2 mb-md-0">
+                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Branch office</h4>
+                <mat-form-field class="w-100">
+                  <mat-select class="g-input">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let office of offices" [value]="office">{{office.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
-              <div class="">
+              <div class=" mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Currency</h4>
-                <input type="text" class="g-input w-100">
+                <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
+                  $
+                </div>
+
               </div>
             </div>
           </div>
 
-          <div class="ml-3 mt-4">
+          <div class="ml-md-3 mt-4">
             <h2 class="g-c--black g-f--30 g-f--bold">Details</h2>
             <hr>
 
-            <div class="d-flex">
-              <div class="w-50 mr-md-4">
+            <div class="d-flex flex-column flex-md-row">
+              <div class="w-50 mr-md-4 mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Name</h4>
                 <div class="d-flex ">
                   <input type="text" class="g-input w-100">
                 </div>
 
               </div>
-              <div class="flex-fill mr-md-4">
+              <div class="flex-fill mr-md-4  mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Quantity</h4>
                 <input type="text" class="g-input w-100">
               </div>
-              <div class="flex-fill mr-md-4">
+              <div class="flex-fill mr-md-4 mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Price</h4>
                 <input type="text" class="g-input w-100">
               </div>
@@ -84,7 +99,7 @@
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Subtotal</h4>
                 <input type="text" class="g-input w-100">
               </div>
-              <div class="">
+              <div class="order-0 order-md-last">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">&nbsp;</h4>
                 <button mat-button class="g-btn g-btn--blue ml-2">
                   <i class="material-icons">
@@ -95,11 +110,11 @@
             </div>
           </div>
 
-          <div class="ml-3 mt-4">
+          <div class="ml-md-3 mt-4">
             <button mat-button class="g-btn g-btn--blue g-btn--big px-4">
               ADD
             </button>
-            <div class="d-flex">
+            <div class="d-flex flex-column flex-md-row">
               <div class="w-md-25 ml-auto d-flex align-items-center">
                 <div class="g-f--18 g-c--gray g-f--bold ">
                   Total
@@ -111,7 +126,7 @@
 
             </div>
           </div>
-          <div class="ml-3 mt-4">
+          <div class="ml-md-3 mt-4">
             <hr>
             <div class="text-right">
               <button mat-button class="g-btn g-btn--blue g-uppercase g-btn--big px-4">
