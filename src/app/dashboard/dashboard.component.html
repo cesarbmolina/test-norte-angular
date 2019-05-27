@@ -48,7 +48,7 @@
                       <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <button mat-button class="g-btn g-btn--blue ml-2 ">
+                  <button mat-button class="g-btn g-btn--blue ml-2 " (click)="addUser()">
                     <i class="material-icons">
                       add
                     </i>
@@ -59,7 +59,7 @@
               <div class="flex-fill mr-md-4 mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Branch office</h4>
                 <mat-form-field class="w-100">
-                  <mat-select class="g-input">
+                  <mat-select class="g-input" [(ngModel)]="office" (selectionChange)="onOfficeChance(office)" >
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let office of offices" [value]="office">{{office.name}}</mat-option>
                   </mat-select>
@@ -68,7 +68,7 @@
               <div class=" mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Currency</h4>
                 <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
-                  {{currencie}}
+                  {{currencies}}
                 </div>
 
               </div>

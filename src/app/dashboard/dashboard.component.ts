@@ -23,15 +23,27 @@ export class DashboardComponent implements OnInit {
   }
 
   showUser(): void {
-    this.rest.getConfig().subscribe( data => {
+    this.rest.getConfig().subscribe(data => {
       this.users = data;
     });
   }
 
+  addUser() {
+    let person = prompt("Please enter your name", "");
+    if (person != null) {
+      this.users.push({ name: person });
+    }
+  }
+
   showOffice(): void {
-    this.rest.getCountry().subscribe( data => {
+    this.rest.getCountry().subscribe(data => {
       this.offices = data;
     });
+  }
+
+  onOfficeChance(value: any) {
+    console.log(value.currencies[0].code);
+    this.currencies = value.currencies[0].code
   }
 
 
