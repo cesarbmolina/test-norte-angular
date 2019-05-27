@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { RestService } from '../rest.service';
+import { Users } from '../models/users.interface';
+import { Offices } from '../models/office.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +9,11 @@ import { RestService } from '../rest.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  listUser: any;
-  users: string;
+  users: Users[] = [];
 
-  listoffice: any;
-  offices: any;
+  offices: Offices[] = [];
+
+  currencies: string;
 
   constructor(private rest: RestService) { }
 
@@ -21,21 +23,16 @@ export class DashboardComponent implements OnInit {
   }
 
   showUser(): void {
-    this.listUser = this.rest.getConfig();
-    this.listUser.subscribe(data => {
+    this.rest.getConfig().subscribe( data => {
       this.users = data;
     });
   }
 
-
   showOffice(): void {
-    this.listoffice = this.rest.getCountry();
-    this.listoffice.subscribe(data => {
+    this.rest.getCountry().subscribe( data => {
       this.offices = data;
     });
   }
 
-
-  
 
 }
