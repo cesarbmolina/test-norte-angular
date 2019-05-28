@@ -1,34 +1,36 @@
-<div class="my-3">
-  <mat-form-field class="my-3">
-    <label for="">Select Product</label>
-    <mat-select class="w-100 g-input" [(ngModel)]="item">
+<form #myform="ngForm" (ngSubmit)="register(myform)">
+  <div class="my-3">
+    <div class="w-100 mb-2">
+      <label class="mb-2" for="">Select Product</label>
+      <select name="product" class="g-input border w-100" [(ngModel)]="item" #name_id="ngModel" (change)="register(myform)">
+        <option value="" disabled selected>Select Product</option>
+        <option *ngFor="let item of products" [value]="item.Title">{{item.Title}}</option>
+      </select>
+    </div>
 
-      <mat-option *ngFor="let item of products" [value]="item">
-        {{item.Title}}
-      </mat-option>
-    </mat-select>
 
-  </mat-form-field>
-  <div class="w-100">
-    <label for="">Quantity</label>
-    <input type="number" [(ngModel)]="quantity" class="form-group p-2 mt-2 g-bg-c--white w-100 border" placeholder="">
+    <div class="w-100">
+      <label for="">Quantity</label>
+      <input type="number" name="quantity" [(ngModel)]="quantity" (change)="register(myform)" class="form-group p-2 mt-2 g-bg-c--white w-100 border"
+        placeholder="">
+    </div>
+
+    <div class="w-100">
+      <label for="">Price</label>
+      <input type="number" name="price" [(ngModel)]="price" (change)="register(myform)" class="form-group p-2 mt-2 g-bg-c--white w-100 border">
+    </div>
+
   </div>
 
-  <div class="w-100">
-    <label for="">Price</label>
-    <input type="number" [(ngModel)]="price" class="form-group p-2 mt-2 g-bg-c--white w-100 border">
-  </div>
+  <mat-dialog-actions>
 
-</div>
+    <button mat-raised-button class="g-btn px-5 py-1" (click)="close()">
+      Close
+    </button>
 
-<mat-dialog-actions>
+    <button mat-raised-button class="g-btn g-btn--blue px-5 py-1" (click)="add()">
+      Add
+    </button>
 
-  <button mat-raised-button class="g-btn px-5 py-1" (click)="close()">
-    Close
-  </button>
-
-  <button mat-raised-button class="g-btn g-btn--blue px-5 py-1" (click)="add()">
-    Add
-  </button>
-
-</mat-dialog-actions>
+  </mat-dialog-actions>
+</form>

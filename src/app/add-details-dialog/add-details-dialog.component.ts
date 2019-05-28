@@ -15,11 +15,14 @@ export class AddDetailsDialogComponent implements OnInit {
   onAdd = new EventEmitter();
 
   products: Products[] = [];
-  product: Products[] = [];
+
+  arrayProd: any;
+
+  
 
   constructor(
     private dialogRef: MatDialogRef<any>,
-    private rest: RestService ) {
+    private rest: RestService) {
 
   }
 
@@ -29,29 +32,30 @@ export class AddDetailsDialogComponent implements OnInit {
 
   showProducts(): void {
     this.rest.getProducts()
-    .subscribe(data => {
-      this.products = data;
-    });
+      .subscribe(data => {
+        this.products = data;
+      });
   }
 
   add(): void {
-    this.addProduct('hola');
-    this.onAdd.emit(this.product);
+    this.onAdd.emit(this.arrayProd);
     this.dialogRef.close();
   }
 
   close() {
     this.dialogRef.close();
   }
-  
 
-  addProduct(value): void {
-    this.product.push({
-      Title: value,
-      quantity: '',
-      price: '',
-      subtotal: ''
-    });
+  register(form: NgForm): any {
+    this.arrayProd = [
+      {
+        name: form.controls['product'].value,
+        quantity: form.controls['quantity'].value,
+        price: form.controls['price'].value
+      }
+    ]
   }
+
+
 
 }

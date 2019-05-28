@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
 
   products: Products[] = [];
 
+  productData: any;
+
   currencies: string;
 
   constructor(private rest: RestService, private dialog: MatDialog) { }
@@ -51,13 +53,6 @@ export class DashboardComponent implements OnInit {
     this.currencies = value.currencies[0].code
   }
 
-  showProducts(): void {
-    this.rest.getProducts()
-    .subscribe(data => {
-      this.products = data;
-    });
-  }
-
   openDialog() {
 
     const dialogConfig = new MatDialogConfig();
@@ -67,8 +62,19 @@ export class DashboardComponent implements OnInit {
 
     this.dialog.open(AddDetailsDialogComponent, dialogConfig)
     .componentInstance.onAdd.subscribe((response) => {
-      console.log(response);
+      this.productData = response;
+      this.addProduct();
     });
+  }
+
+  addProduct(): void {
+    this.products.push({
+      Title: this.productData[0].name,
+      quantity: this.productData[0].quantity,
+      price: this.productData[0].price,
+      subtotal: this.productData[0].quantity * this.productData[0].price
+    });
+    console.log(this.products);
   }
 
 
