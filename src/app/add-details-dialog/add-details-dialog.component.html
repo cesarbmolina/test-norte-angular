@@ -1,17 +1,22 @@
 <div class="my-3">
   <mat-form-field class="my-3">
     <label for="">Select Product</label>
-    <mat-select class="w-100 g-input">
+    <mat-select class="w-100 g-input" [(ngModel)]="item">
 
-      <mat-option *ngFor="let product of products" value="">
-        {{product.Title}}
+      <mat-option *ngFor="let item of products" [value]="item">
+        {{item.Title}}
       </mat-option>
     </mat-select>
 
   </mat-form-field>
   <div class="w-100">
     <label for="">Quantity</label>
-    <input type="number" class="form-group p-2 mt-2 g-bg-c--white w-100 border" placeholder="">
+    <input type="number" [(ngModel)]="quantity" class="form-group p-2 mt-2 g-bg-c--white w-100 border" placeholder="">
+  </div>
+
+  <div class="w-100">
+    <label for="">Price</label>
+    <input type="number" [(ngModel)]="price" class="form-group p-2 mt-2 g-bg-c--white w-100 border">
   </div>
 
 </div>

@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { NgForm } from '@angular/forms';
 
 import { Products } from '../models/products.interface';
 import { RestService } from '../rest.service';
@@ -11,21 +11,15 @@ import { RestService } from '../rest.service';
   styleUrls: ['./add-details-dialog.component.scss']
 })
 export class AddDetailsDialogComponent implements OnInit {
-  form: FormGroup;
   description: string;
+  onAdd = new EventEmitter();
 
   products: Products[] = [];
+  product: Products[] = [];
 
   constructor(
     private dialogRef: MatDialogRef<any>,
-    private fb: FormBuilder,
     private rest: RestService ) {
-
-    this.description = '';
-
-
-    this.form = fb.group({
-    });
 
   }
 
@@ -40,12 +34,24 @@ export class AddDetailsDialogComponent implements OnInit {
     });
   }
 
-  add() {
+  add(): void {
+    this.addProduct('hola');
+    this.onAdd.emit(this.product);
     this.dialogRef.close();
   }
 
   close() {
     this.dialogRef.close();
+  }
+  
+
+  addProduct(value): void {
+    this.product.push({
+      Title: value,
+      quantity: '',
+      price: '',
+      subtotal: ''
+    });
   }
 
 }

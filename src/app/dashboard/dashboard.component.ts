@@ -65,7 +65,10 @@ export class DashboardComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    this.dialog.open(AddDetailsDialogComponent, dialogConfig);
+    this.dialog.open(AddDetailsDialogComponent, dialogConfig)
+    .componentInstance.onAdd.subscribe((response) => {
+      console.log(response);
+    });
   }
 
 
