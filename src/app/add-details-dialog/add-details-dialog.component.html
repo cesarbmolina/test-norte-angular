@@ -9,15 +9,19 @@
     </div>
 
 
-    <div class="w-100">
+    <div class="w-100 mb-2">
       <label for="">Quantity</label>
-      <input type="number" name="quantity" [(ngModel)]="quantity" (change)="register(myform)" class="form-group p-2 mt-2 g-bg-c--white w-100 border"
+      <input matInput type="number" name="quantity" [(ngModel)]="quantity" (change)="register(myform)" class="form-group p-2 mt-2 g-bg-c--white w-100 border"
         placeholder="">
     </div>
 
     <div class="w-100">
       <label for="">Price</label>
-      <input type="number" name="price" [(ngModel)]="price" (change)="register(myform)" class="form-group p-2 mt-2 g-bg-c--white w-100 border">
+      <input matInput type="number" name="price" [(ngModel)]="price" (change)="register(myform)" class="form-group p-2 mt-2 g-bg-c--white w-100 border">
+    </div>
+
+    <div class="w-100" *ngIf="msg">
+      <p class="text-danger">{{ msg }}</p>
     </div>
 
   </div>

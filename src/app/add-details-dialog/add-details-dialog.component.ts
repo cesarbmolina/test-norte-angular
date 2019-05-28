@@ -16,9 +16,9 @@ export class AddDetailsDialogComponent implements OnInit {
 
   products: Products[] = [];
 
-  arrayProd: any;
+  arrayProd: object[];
 
-  
+  msg: any;
 
   constructor(
     private dialogRef: MatDialogRef<any>,
@@ -28,6 +28,7 @@ export class AddDetailsDialogComponent implements OnInit {
 
   ngOnInit() {
     this.showProducts();
+    console.log(this.arrayProd);
   }
 
   showProducts(): void {
@@ -38,8 +39,14 @@ export class AddDetailsDialogComponent implements OnInit {
   }
 
   add(): void {
-    this.onAdd.emit(this.arrayProd);
-    this.dialogRef.close();
+    if (this.arrayProd === undefined ) {
+      this.msg = 'Please insert data';
+      return this.msg;
+    } else {
+      console.log(this.arrayProd);
+      this.onAdd.emit(this.arrayProd);
+      this.dialogRef.close();
+    }
   }
 
   close() {
