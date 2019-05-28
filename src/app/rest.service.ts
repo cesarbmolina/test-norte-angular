@@ -11,6 +11,7 @@ export class RestService {
   
   listUser: any;
   listCountry: any;
+  listProducts: any;
 
   constructor(private http: HttpClient) { }
 
@@ -22,5 +23,10 @@ export class RestService {
   getCountry() {
     this.listCountry = this.http.get(environment.getUrlCountry);
     return this.listCountry;
+  }
+
+  getProducts() {
+    this.listProducts = this.http.get(environment.getProduct);
+    return this.listProducts;
   }
 }

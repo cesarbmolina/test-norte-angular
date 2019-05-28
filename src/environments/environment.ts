@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   getUrl: 'https://jsonplaceholder.typicode.com/users',
-  getUrlCountry:'https://restcountries.eu/rest/v2/region/americas'
+  getUrlCountry:'https://restcountries.eu/rest/v2/region/americas',
+  getProduct: 'http://fakerestapi.azurewebsites.net/api/books'
 };
 
 /*

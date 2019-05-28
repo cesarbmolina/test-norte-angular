@@ -1,0 +1,29 @@
+<div class="my-3">
+  <mat-form-field class="my-3">
+    <label for="">Select Product</label>
+    <mat-select class="w-100 g-input">
+
+      <mat-option *ngFor="let product of products" value="">
+        {{product.Title}}
+      </mat-option>
+    </mat-select>
+
+  </mat-form-field>
+  <div class="w-100">
+    <label for="">Quantity</label>
+    <input type="number" class="form-group p-2 mt-2 g-bg-c--white w-100 border" placeholder="">
+  </div>
+
+</div>
+
+<mat-dialog-actions>
+
+  <button mat-raised-button class="g-btn px-5 py-1" (click)="close()">
+    Close
+  </button>
+
+  <button mat-raised-button class="g-btn g-btn--blue px-5 py-1" (click)="add()">
+    Add
+  </button>
+
+</mat-dialog-actions>
