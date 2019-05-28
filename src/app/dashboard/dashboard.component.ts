@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material";
+import { NgForm } from '@angular/forms';
 
 import { RestService } from '../rest.service';
 import { Users } from '../models/users.interface';
@@ -24,6 +25,8 @@ export class DashboardComponent implements OnInit {
   currencies: string;
 
   totalItems: number = 0;
+
+  dataService;
 
   constructor(private rest: RestService, private dialog: MatDialog) { }
 
@@ -91,6 +94,18 @@ export class DashboardComponent implements OnInit {
       this.totalItems = this.totalItems + element.subtotal;
     });
   }
+
+  save(form: NgForm): any {
+    let saveData = [{
+      client: form.controls['usuario'].value,
+      office: form.controls['office'].value.name,
+      dataDetail: this.products
+    }];
+
+    localStorage.setItem('dataStorage', JSON.stringify(saveData));
+  }
+
+
 
 
 }

@@ -34,113 +34,115 @@
             </div>
           </div>
 
-          <div class="ml-md-3 mt-4">
-            <h2 class="g-c--black g-f--30 g-f--bold">Document</h2>
-            <hr>
+          <form #dashform="ngForm">
+            <div class="ml-md-3 mt-4">
+              <h2 class="g-c--black g-f--30 g-f--bold">Document</h2>
+              <hr>
 
-            <div class="d-flex flex-column flex-md-row">
-              <div class="flex-fill mr-md-4 mb-2 mb-md-0">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Client</h4>
-                <div class="d-flex">
-                  <mat-form-field class="w-100 ">
-                    <mat-select class="g-input" [(ngModel)]="user">
+              <div class="d-flex flex-column flex-md-row">
+                <div class="flex-fill mr-md-4 mb-2 mb-md-0">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Client</h4>
+                  <div class="d-flex">
+                    <mat-form-field class="w-100 ">
+                      <mat-select class="g-input" name="usuario" #name_id="ngModel" [(ngModel)]="user">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let user of users" [value]="user.name">{{user.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <button mat-button class="g-btn g-btn--blue ml-2 " (click)="addUser()">
+                      <i class="material-icons">
+                        add
+                      </i>
+                    </button>
+                  </div>
+
+                </div>
+                <div class="flex-fill mr-md-4 mb-2 mb-md-0">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Branch office</h4>
+                  <mat-form-field class="w-100">
+                    <mat-select class="g-input" [(ngModel)]="office" name="office"  (selectionChange)="onOfficeChance(office)">
                       <mat-option>None</mat-option>
-                      <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
+                      <mat-option *ngFor="let office of offices" [value]="office">{{office.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <button mat-button class="g-btn g-btn--blue ml-2 " (click)="addUser()">
+                </div>
+                <div class=" mb-2 mb-md-0">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Currency</h4>
+                  <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
+                    {{currencies}}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="ml-md-3 mt-4">
+              <h2 class="g-c--black g-f--30 g-f--bold">Details</h2>
+              <hr>
+
+              <div class="d-flex flex-column flex-md-row mb-3" *ngFor="let detail of products; let i = index">
+                <div class="w-50 mr-md-4 mb-2 mb-md-0">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Name</h4>
+                  <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
+                    {{ detail.Title }}
+                  </div>
+
+                </div>
+                <div class="flex-fill mr-md-4  mb-2 mb-md-0">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Quantity</h4>
+                  <mat-form-field class="g-input">
+                    <input matInput type="number" value="{{ detail.quantity }}">
+                  </mat-form-field>
+                </div>
+                <div class="flex-fill mr-md-4 mb-2 mb-md-0">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Price</h4>
+                  <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
+                    {{ detail.price }}
+                  </div>
+
+                </div>
+                <div class="flex-fill">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Subtotal</h4>
+                  <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
+                    {{ detail.subtotal}}
+                  </div>
+                </div>
+                <div class="order-0 order-md-last">
+                  <h4 class="g-f--18 g-c--gray g-f--bold mb-2">&nbsp;</h4>
+                  <button mat-button class="g-btn g-btn--blue ml-2" (click)="clearItems(i)">
                     <i class="material-icons">
-                      add
+                      clear
                     </i>
                   </button>
                 </div>
+              </div>
+            </div>
 
-              </div>
-              <div class="flex-fill mr-md-4 mb-2 mb-md-0">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Branch office</h4>
-                <mat-form-field class="w-100">
-                  <mat-select class="g-input" [(ngModel)]="office" (selectionChange)="onOfficeChance(office)">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let office of offices" [value]="office">{{office.name}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class=" mb-2 mb-md-0">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Currency</h4>
-                <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
-                  {{currencies}}
+            <div class="ml-md-3 mt-4">
+              <button mat-button class="g-btn g-btn--blue g-btn--big px-4" (click)="openDialog()">
+                ADD
+              </button>
+              <div class="d-flex flex-column flex-md-row">
+                <div class="w-md-25 ml-auto d-flex align-items-center">
+                  <div class="g-f--18 g-c--gray g-f--bold ">
+                    Total
+                  </div>
+                  <div type="text" class="g-bg-c--white p-3 w-100 ml-2 align-middle">
+                    {{totalItems}}
+                  </div>
                 </div>
 
               </div>
             </div>
-          </div>
-
-          <div class="ml-md-3 mt-4">
-            <h2 class="g-c--black g-f--30 g-f--bold">Details</h2>
-            <hr>
-
-            <div class="d-flex flex-column flex-md-row mb-3" *ngFor="let detail of products; let i = index">
-              <div class="w-50 mr-md-4 mb-2 mb-md-0">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Name</h4>
-                <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
-                  {{ detail.Title }}
-                </div>
-
-              </div>
-              <div class="flex-fill mr-md-4  mb-2 mb-md-0">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Quantity</h4>
-                <mat-form-field class="g-input">
-                  <input matInput type="number" value="{{ detail.quantity }}">
-                </mat-form-field>
-              </div>
-              <div class="flex-fill mr-md-4 mb-2 mb-md-0">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Price</h4>
-                <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
-                  {{ detail.price }}
-                </div>
-
-              </div>
-              <div class="flex-fill">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Subtotal</h4>
-                <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
-                  {{ detail.subtotal}}
-                </div>
-              </div>
-              <div class="order-0 order-md-last">
-                <h4 class="g-f--18 g-c--gray g-f--bold mb-2">&nbsp;</h4>
-                <button mat-button class="g-btn g-btn--blue ml-2" (click)="clearItems(i)">
-                  <i class="material-icons">
-                    clear
-                  </i>
+            <div class="ml-md-3 mt-4">
+              <hr>
+              <div class="text-right">
+                <button mat-button class="g-btn g-btn--blue g-uppercase g-btn--big px-4" (click)="save(dashform)">
+                  save
                 </button>
               </div>
             </div>
-          </div>
-
-          <div class="ml-md-3 mt-4">
-            <button mat-button class="g-btn g-btn--blue g-btn--big px-4" (click)="openDialog()">
-              ADD
-            </button>
-            <div class="d-flex flex-column flex-md-row">
-              <div class="w-md-25 ml-auto d-flex align-items-center">
-                <div class="g-f--18 g-c--gray g-f--bold ">
-                  Total
-                </div>
-                <div type="text" class="g-bg-c--white p-3 w-100 ml-2 align-middle">
-                  {{totalItems}}
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div class="ml-md-3 mt-4">
-            <hr>
-            <div class="text-right">
-              <button mat-button class="g-btn g-btn--blue g-uppercase g-btn--big px-4">
-                save
-              </button>
-            </div>
-          </div>
+          </form>
 
         </div>
       </section>
