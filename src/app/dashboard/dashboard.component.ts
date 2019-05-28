@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
 
   currencies: string;
 
+  totalItems: number = 0;
+
   constructor(private rest: RestService, private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -61,10 +63,10 @@ export class DashboardComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     this.dialog.open(AddDetailsDialogComponent, dialogConfig)
-    .componentInstance.onAdd.subscribe((response) => {
-      this.productData = response;
-      this.addProduct();
-    });
+      .componentInstance.onAdd.subscribe((response) => {
+        this.productData = response;
+        this.addProduct();
+      });
   }
 
   addProduct(): void {
@@ -74,7 +76,20 @@ export class DashboardComponent implements OnInit {
       price: this.productData[0].price,
       subtotal: this.productData[0].quantity * this.productData[0].price
     });
-    console.log(this.products);
+
+    this.totalItems = 0
+    this.products.forEach(element => {
+      this.totalItems = this.totalItems + element.subtotal;
+    });
+
+  }
+
+  clearItems(i) {
+    this.products.splice(i, 1);
+    this.totalItems = 0
+    this.products.forEach(element => {
+      this.totalItems = this.totalItems + element.subtotal;
+    });
   }
 
 

@@ -79,7 +79,7 @@
             <h2 class="g-c--black g-f--30 g-f--bold">Details</h2>
             <hr>
 
-            <div class="d-flex flex-column flex-md-row mb-3" *ngFor="let detail of products">
+            <div class="d-flex flex-column flex-md-row mb-3" *ngFor="let detail of products; let i = index">
               <div class="w-50 mr-md-4 mb-2 mb-md-0">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">Name</h4>
                 <div type="text" class="g-bg-c--white g-input w-100 d-flex align-items-center">
@@ -108,7 +108,7 @@
               </div>
               <div class="order-0 order-md-last">
                 <h4 class="g-f--18 g-c--gray g-f--bold mb-2">&nbsp;</h4>
-                <button mat-button class="g-btn g-btn--blue ml-2">
+                <button mat-button class="g-btn g-btn--blue ml-2" (click)="clearItems(i)">
                   <i class="material-icons">
                     clear
                   </i>
@@ -127,7 +127,7 @@
                   Total
                 </div>
                 <div type="text" class="g-bg-c--white p-3 w-100 ml-2 align-middle">
-                  000.000.000,00
+                  {{totalItems}}
                 </div>
               </div>
 
