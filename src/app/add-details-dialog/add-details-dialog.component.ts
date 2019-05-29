@@ -28,7 +28,6 @@ export class AddDetailsDialogComponent implements OnInit {
 
   ngOnInit() {
     this.showProducts();
-    console.log(this.arrayProd);
   }
 
   showProducts(): void {
@@ -43,7 +42,6 @@ export class AddDetailsDialogComponent implements OnInit {
       this.msg = 'Please insert data';
       return this.msg;
     } else {
-      console.log(this.arrayProd);
       this.onAdd.emit(this.arrayProd);
       this.dialogRef.close();
     }

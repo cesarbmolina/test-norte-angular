@@ -28,11 +28,16 @@ export class DashboardComponent implements OnInit {
 
   dataService;
 
+  user: Users;
+
+  office: Offices;
+
   constructor(private rest: RestService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.showUser();
     this.showOffice();
+    this.checkStorage('dataStorage');
   }
 
   showUser(): void {
@@ -55,7 +60,16 @@ export class DashboardComponent implements OnInit {
   }
 
   onOfficeChance(value: any) {
-    this.currencies = value.currencies[0].code
+    console.log(value);    
+    this.findOffice(value);
+  }
+
+  findOffice(nameOffice) {
+    const arrayOffice = this.offices;
+  
+    const getArrayOffice = arrayOffice.find(data => data.name === nameOffice);
+  
+    this.currencies = getArrayOffice.currencies[0].code;
   }
 
   openDialog() {
@@ -98,14 +112,38 @@ export class DashboardComponent implements OnInit {
   save(form: NgForm): any {
     let saveData = [{
       client: form.controls['usuario'].value,
-      office: form.controls['office'].value.name,
-      dataDetail: this.products
+      office: form.controls['office'].value,
+      currencies: this.currencies,
+      dataDetail: this.products,
+      total: this.totalItems
     }];
+    console.log(this.totalItems);
 
     localStorage.setItem('dataStorage', JSON.stringify(saveData));
   }
 
+  checkStorage(value): void {
+    if (localStorage.getItem('dataStorage')) {
+      let sale = JSON.parse(localStorage.getItem('dataStorage'))[0];
+      this.user = sale.client;
+      this.office = sale.office;
+      this.currencies = sale.currencies;
+      this.totalItems = sale.total;
 
+      sale.dataDetail.forEach(element => {
+        this.products.push({
+          Title: element.Title,
+          quantity: element.quantity,
+          price: element.price,
+          subtotal: element.quantity * element.price
+        });
+      });
+
+
+
+    }
+
+  }
 
 
 }
