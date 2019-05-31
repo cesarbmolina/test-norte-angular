@@ -59,15 +59,14 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  onOfficeChance(value: any) {
-    console.log(value);    
+  onOfficeChance(value: any) {    
     this.findOffice(value);
   }
 
   findOffice(nameOffice) {
     const arrayOffice = this.offices;
   
-    const getArrayOffice = arrayOffice.find(data => data.name === nameOffice);
+    const getArrayOffice = arrayOffice.find(data => data.name === nameOffice) as any;
   
     this.currencies = getArrayOffice.currencies[0].code;
   }
@@ -117,7 +116,6 @@ export class DashboardComponent implements OnInit {
       dataDetail: this.products,
       total: this.totalItems
     }];
-    console.log(this.totalItems);
 
     localStorage.setItem('dataStorage', JSON.stringify(saveData));
   }
